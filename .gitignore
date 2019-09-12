@@ -1,3 +1,7 @@
 SceneToolbar/Library/
 SceneToolbar/obj/
 SceneToolbar/.vs/
+
+CoroutinesSingleton/Library/
+CoroutinesSingleton/obj/
+CoroutinesSingleton/.vs/
