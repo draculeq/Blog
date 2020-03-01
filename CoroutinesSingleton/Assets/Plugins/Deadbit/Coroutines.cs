@@ -7,10 +7,10 @@ namespace Deadbit.Utils
 {
     public interface ICoroutines
     {
-        IEnumerator Begin(IEnumerator coroutine);
-        void Stop(IEnumerator coroutine);
-        IEnumerator StartDelayed(float delay, Action callback);
-        IEnumerator StartDelayed(int framesOfDelay, Action callback);
+        Coroutine Begin(IEnumerator enumerator);
+        void Stop(Coroutine coroutine);
+        Coroutine StartDelayed(float delay, Action callback);
+        Coroutine StartDelayed(int framesOfDelay, Action callback);
     }
 
     public class Coroutines : MonoBehaviour, ICoroutines
@@ -30,23 +30,22 @@ namespace Deadbit.Utils
             }
         }
 
-        public IEnumerator Begin(IEnumerator coroutine)
+        public Coroutine Begin(IEnumerator enumerator)
         {
-            StartCoroutine(coroutine);
-            return coroutine;
-        }
-        public void Stop(IEnumerator coroutine)
-        {
-            if (coroutine != null)
-                StopCoroutine(coroutine);
+            return StartCoroutine(enumerator);
         }
 
-        public IEnumerator StartDelayed(float delay, Action callback)
+        public void Stop(Coroutine coroutine)
+        {
+            StopCoroutine(coroutine);
+        }
+
+        public Coroutine StartDelayed(float delay, Action callback)
         {
             return ((MonoBehaviour)this).StartDelayed(delay, callback);
         }
 
-        public IEnumerator StartDelayed(int framesOfDelay, Action callback)
+        public Coroutine StartDelayed(int framesOfDelay, Action callback)
         {
             return ((MonoBehaviour)this).StartDelayed(framesOfDelay, callback);
         }
